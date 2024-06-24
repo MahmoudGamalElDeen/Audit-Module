@@ -18,6 +18,21 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'Illuminate\Auth\Events\Login' => [
+            'App\Listeners\LogSuccessfulLogin',
+        ],
+        'App\Events\ProfileUpdated' => [
+            'App\Listeners\LogProfileUpdate',
+        ],
+        'App\Events\DatabaseUpdated' => [
+            'App\Listeners\LogDatabaseUpdate',
+        ],
+        'App\Events\FileUploaded' => [
+            'App\Listeners\LogFileUpload',
+        ],
+        'App\Events\ApplicationError' => [
+            'App\Listeners\LogApplicationError',
+        ],
     ];
 
     /**

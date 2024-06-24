@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuditController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,10 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('audit/user-logs', [AuditController::class, 'getUserLogs'])->name('api.audit.user_logs');
+    Route::get('audit/system-logs', [AuditController::class, 'getSystemLogs'])->name('api.audit.system_logs');
+});
